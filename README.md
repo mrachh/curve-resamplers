@@ -5,10 +5,10 @@ collection of points.
 
 Installation
 -------------
-* To install the fortran library, run `make install' after copying
+* To install the fortran library, run `make install` after copying
   over the appropriate version of make.inc depending on the operating
   system (none is needed for linux). To verify successful installation
-  of the library, run `make examples'. This should run both the tests
+  of the library, run `make examples`. This should run both the tests
   and successful installation would end in a small error in the last
   line of the run.
 
