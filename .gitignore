@@ -1,0 +1,7 @@
+*.o
+int2*
+fort.*
+*.a
+*.so
+make.inc
+*mex*
