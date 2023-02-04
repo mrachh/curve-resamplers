@@ -75,3 +75,5 @@ Upcoming
 * Fortran and MATLAB wrappers for rsresa
 * Currently the computed curvature is incorrect. Support for curvature
   evaluation will be available at a later date.
+
+The original codes were written by Vladimir Rokhlin and Daniel Beylkin.
