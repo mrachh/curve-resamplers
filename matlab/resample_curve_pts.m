@@ -21,11 +21,14 @@ function [varargout] = resample_curve_pts(xys,nb,eps,nuse)
 %    rltot - Length of the curve
 %    wsave(lsave) - array which stores info for resampling points
 %      later at desired values
+%    tts - the t values in [0,L] which correspond to the input points
+%    nout - recommended minimum number of points required to resample
+%          the curve
 %
   [~,n] = size(xys);
-  if( nargout < 2 || nargout > 3)
+  if( nargout < 2 || nargout > 4)
     fprintf('invalid number of output arguments\n');
-    fprintf('out arguments must be 2,3\n');
+    fprintf('out arguments must be 2,3,4\n');
     varargout(1:nargout) = {0};
     return;
   end
@@ -52,13 +55,13 @@ function [varargout] = resample_curve_pts(xys,nb,eps,nuse)
 [nlarge, nout, lsave, lused, ierm] = curve_resampler(mex_id_, n, xys, nb, epsuse, nmax, nlarge, nout, lsave, lused, ierm, 1, 2, n, 1, 1, 1, 1, 1, 1, 1, 1);
 
   if(ierm == 4)
-    fprintf('nb too small resulting curve self intersecting');
-    fprintf('change nb or eps');
-    fprintf('returning without resampling curve');
+    fprintf('nb too small resulting curve self intersecting\n');
+    fprintf('change nb or eps\n');
+    fprintf('returning without resampling curve\n');
     varargout(1:nargout) = {0};
   else if(ierm == 2)
-    fprintf('warning: desired interpolation accurcy not reached');
-    fprintf('try changing nb');
+    fprintf('warning: desired interpolation accurcy not reached\n');
+    fprintf('try changing nb\n');
   end
 
   wsave = zeros(lsave,1);
@@ -74,6 +77,9 @@ function [varargout] = resample_curve_pts(xys,nb,eps,nuse)
   varargout{2} = wsave;
   if(nargout>=3)
     varargout{3} = tts(1:n);
+  end
+  if(nargout>=4)
+    varargout{4} = nout;
   end
 
 end

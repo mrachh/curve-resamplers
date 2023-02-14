@@ -160,11 +160,14 @@ end
 %    rltot - Length of the curve
 %    wsave(lsave) - array which stores info for resampling points
 %      later at desired values
+%    tts - the t values in [0,L] which correspond to the input points
+%    nout - recommended minimum number of points required to resample
+%          the curve
 %
   [~,n] = size(xys);
-  if( nargout < 2 || nargout > 3)
+  if( nargout < 2 || nargout > 4)
     fprintf('invalid number of output arguments\n');
-    fprintf('out arguments must be 2,3\n');
+    fprintf('out arguments must be 2,3,4\n');
     varargout(1:nargout) = {0};
     return;
   end
@@ -190,13 +193,13 @@ end
   # FORTRAN simple_curve_resampler_mem(int[1] n, double[2,n] xys, int[1] nb, double[1] epsuse, int[1] nmax, inout int[1] nlarge, inout int[1] nout, inout int[1] lsave, inout int[1] lused, inout int[1] ierm); 
 
   if(ierm == 4)
-    fprintf('nb too small resulting curve self intersecting');
-    fprintf('change nb or eps');
-    fprintf('returning without resampling curve');
+    fprintf('nb too small resulting curve self intersecting\n');
+    fprintf('change nb or eps\n');
+    fprintf('returning without resampling curve\n');
     varargout(1:nargout) = {0};
   else if(ierm == 2)
-    fprintf('warning: desired interpolation accurcy not reached');
-    fprintf('try changing nb');
+    fprintf('warning: desired interpolation accurcy not reached\n');
+    fprintf('try changing nb\n');
   end
 
   wsave = zeros(lsave,1);
@@ -211,6 +214,9 @@ end
   varargout{2} = wsave;
   if(nargout>=3)
     varargout{3} = tts(1:n);
+  end
+  if(nargout>=4)
+    varargout{4} = nout;
   end
 
 end

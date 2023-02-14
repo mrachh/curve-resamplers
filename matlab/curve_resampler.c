@@ -1352,7 +1352,7 @@ mw_err_label:
         mexErrMsgTxt(mw_err_txt_);
 }
 
-/* ---- curve_resampler.mw: 190 ----
+/* ---- curve_resampler.mw: 193 ----
  * simple_curve_resampler_mem(int64_t[1] n, double[2, n] xys, int64_t[1] nb, double[1] epsuse, int64_t[1] nmax, inout int64_t[1] nlarge, inout int64_t[1] nout, inout int64_t[1] lsave, inout int64_t[1] lused, inout int64_t[1] ierm);
  */
 static const char* stubids2_ = "simple_curve_resampler_mem(i int64_t[x], i double[xx], i int64_t[x], i double[x], i int64_t[x], io int64_t[x], io int64_t[x], io int64_t[x], io int64_t[x], io int64_t[x])";
@@ -1534,7 +1534,7 @@ mw_err_label:
         mexErrMsgTxt(mw_err_txt_);
 }
 
-/* ---- curve_resampler.mw: 208 ----
+/* ---- curve_resampler.mw: 211 ----
  * simple_curve_resampler_guru(int64_t[1] n, double[2, n] xys, int64_t[1] nb, int64_t[1] nlarge, int64_t[1] lsave, int64_t[1] lused, int64_t[1] nout, inout double[6, nout] sinfo, inout double[1] hout, inout double[1] rltot, inout double[lsave] wsave, inout double[nnn] tts, inout int64_t[1] ierm);
  */
 static const char* stubids3_ = "simple_curve_resampler_guru(i int64_t[x], i double[xx], i int64_t[x], i int64_t[x], i int64_t[x], i int64_t[x], i int64_t[x], io double[xx], io double[x], io double[x], io double[x], io double[x], io int64_t[x])";
@@ -1760,7 +1760,7 @@ mw_err_label:
         mexErrMsgTxt(mw_err_txt_);
 }
 
-/* ---- curve_resampler.mw: 247 ----
+/* ---- curve_resampler.mw: 253 ----
  * eval_curve_multi(int64_t[1] n, double[n] tsuse, int64_t[1] lsave, double[lsave] wsave, inout double[6, n] binfo);
  */
 static const char* stubids4_ = "eval_curve_multi(i int64_t[x], i double[x], i int64_t[x], i double[x], io double[xx])";
@@ -1901,9 +1901,9 @@ void mexFunction(int nlhs, mxArray* plhs[],
         if (!mexprofrecord_)
             mexPrintf("Profiler inactive\n");
         mexPrintf("%d calls to curve_resampler.mw:110\n", mexprofrecord_[1]);
-        mexPrintf("%d calls to curve_resampler.mw:190\n", mexprofrecord_[2]);
-        mexPrintf("%d calls to curve_resampler.mw:208\n", mexprofrecord_[3]);
-        mexPrintf("%d calls to curve_resampler.mw:247\n", mexprofrecord_[4]);
+        mexPrintf("%d calls to curve_resampler.mw:193\n", mexprofrecord_[2]);
+        mexPrintf("%d calls to curve_resampler.mw:211\n", mexprofrecord_[3]);
+        mexPrintf("%d calls to curve_resampler.mw:253\n", mexprofrecord_[4]);
     } else if (strcmp(id, "*profile log*") == 0) {
         FILE* logfp;
         if (nrhs != 2 || mxGetString(prhs[1], id, sizeof(id)) != 0)
@@ -1914,9 +1914,9 @@ void mexFunction(int nlhs, mxArray* plhs[],
         if (!mexprofrecord_)
             fprintf(logfp, "Profiler inactive\n");
         fprintf(logfp, "%d calls to curve_resampler.mw:110\n", mexprofrecord_[1]);
-        fprintf(logfp, "%d calls to curve_resampler.mw:190\n", mexprofrecord_[2]);
-        fprintf(logfp, "%d calls to curve_resampler.mw:208\n", mexprofrecord_[3]);
-        fprintf(logfp, "%d calls to curve_resampler.mw:247\n", mexprofrecord_[4]);
+        fprintf(logfp, "%d calls to curve_resampler.mw:193\n", mexprofrecord_[2]);
+        fprintf(logfp, "%d calls to curve_resampler.mw:211\n", mexprofrecord_[3]);
+        fprintf(logfp, "%d calls to curve_resampler.mw:253\n", mexprofrecord_[4]);
         fclose(logfp);
     } else
         mexErrMsgTxt("Unknown identifier");
