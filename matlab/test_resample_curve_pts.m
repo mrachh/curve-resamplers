@@ -1,7 +1,7 @@
 clear;
 clc;
 
-x = importdata('bunny10out');
+x = importdata('../data/bunny10out');
 x = x';
 nb = 150;
 % simple interface

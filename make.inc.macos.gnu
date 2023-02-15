@@ -13,11 +13,16 @@ ifeq ($(PREFIX),)
 endif
 
 
-CFLAGS += -I src 
+CFLAGS += -I src -I/usr/local/include 
 
 # OpenMP with gcc on OSX needs the following
 OMPFLAGS = -fopenmp
 OMPLIBS = -lgomp
+
+
+# FFTW additions
+LIBS += -L/usr/local/lib -lfftw3
+
 
 # MATLAB interface:
 FDIR=$$(dirname `gfortran --print-file-name libgfortran.dylib`)

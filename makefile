@@ -13,10 +13,9 @@ CC=gcc
 FC=gfortran
 
 FFLAGS= -fPIC -O3 -funroll-loops -std=legacy -w 
-CFLAGS= -std=c99 
-CFLAGS+= $(FFLAGS)
+CFLAGS= -fPIC -O3 -funroll-loops -std=c99 
 
-CLINK = -lgfortran -lm -ldl
+CLIBS = -lgfortran -lm -ldl
 
 LIBS = -lm
 
@@ -52,7 +51,11 @@ OBJS = src/prini.o  \
 
 TOBJS = src/hkrand.o src/dlaran.o
 
-.PHONY: usage test matlab install
+# C headers and objects
+COBJS = c/cprini.o c/utils.o
+CHEADERS = c/cprini.h c/utils.h c/curve_resamplers_c.h
+
+.PHONY: usage test matlab install c-examples
 
 default: usage 
 
@@ -65,6 +68,7 @@ usage:
 	@echo "                      compile and install the main library at custom"
 	@echo "                      location given by PREFIX"
 	@echo "  make test - compile and run fortran test in test/"
+	@echo "  make c-examples - compile and run the examples in c"
 	@echo "  make matlab - compile matlab interfaces"
 	@echo "  make mex - generate matlab interfaces (for expert users only, requires mwrap)"
 	@echo "  make clean - also remove lib, MEX, py, and demo executables"
@@ -129,6 +133,20 @@ test: $(OBJS) $(TOBJS) test/curve
 
 test/curve:
 	$(FC) $(FFLAGS) test/curve_resampler_test.f $(OBJS) $(TOBJS) -o test/int2-curve 
+
+
+# C examples
+c-examples: $(COBJS) $(OBJS) $(CHEADERS) c/resample c/resample-pts
+	c/int2-resample
+	c/int2-resample-pts
+
+c/resample:
+	$(CC) $(CFLAGS) c/test_curve_resampler_guru.c $(COBJS) $(OBJS) -o c/int2-resample $(CLIBS)
+
+c/resample-pts:
+	$(CC) $(CFLAGS) c/test_curve_resampler_pts.c $(COBJS) $(OBJS) -o c/int2-resample-pts $(CLIBS)
+
+
 
 clean: objclean
 	rm -f test/int2-curve 
