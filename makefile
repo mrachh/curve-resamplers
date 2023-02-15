@@ -13,9 +13,9 @@ CC=gcc
 FC=gfortran
 
 FFLAGS= -fPIC -O3 -funroll-loops -std=legacy -w 
-CFLAGS= -fPIC -O3 -funroll-loops -std=c99 
+CFLAGS= -fPIC -O3 -funroll-loops -std=c99 -I/usr/include -I src
 
-CLIBS = -lgfortran -lm -ldl
+CLIBS = -lgfortran -lm -ldl -lfftw3
 
 LIBS = -lm
 
